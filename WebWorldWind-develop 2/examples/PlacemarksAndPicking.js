@@ -152,6 +152,7 @@ requirejs(['./WorldWindShim',
             // De-highlight any previously highlighted placemarks.
             for (var h = 0; h < highlightedItems.length; h++) {
                 highlightedItems[h].highlighted = false;
+                console.log(highlightedItems[h].highlighted)
             }
             highlightedItems = [];
 

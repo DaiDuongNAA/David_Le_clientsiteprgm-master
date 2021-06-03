@@ -154,7 +154,7 @@ requirejs(['./WorldWindShim',
         // Text can be assigned to the annotation after creating it.
         annotation.label = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
         annotation.enabled = false;
-console.log(annotation);
+        console.log(annotation);
 
         /*
                 // Create and add the annotation layer to the WorldWindow's layer list.
@@ -166,7 +166,6 @@ console.log(annotation);
         var annotationsLayer = new WorldWind.RenderableLayer("Annotations");
         annotationsLayer.addRenderable(annotation);
         wwd.addLayer(annotationsLayer);
-
 
 
         /*
@@ -232,10 +231,8 @@ console.log(annotation);
         wwd.addLayer(surfaceImageLayer);
 
 
-
         // Create a layer manager for controlling layer visibility.
         var layerManager = new LayerManager(wwd);
-
 
 
         var tapRecognizer = new WorldWind.TapRecognizer(wwd, placemark);
@@ -243,131 +240,186 @@ console.log(annotation);
 
         //placemark.addEventListener();
 
-            /*
-            // De-highlight any previously highlighted placemarks.
-            for (var h = 0; h < highlightedItems.length; h++) {
-                annotation[h].enables = false;
-            }
+        /*
+        // De-highlight any previously highlighted placemarks.
+        for (var h = 0; h < highlightedItems.length; h++) {
+            annotation[h].enables = false;
+        }
 
-             */
-            /*
-            if (handlePick = placemarkPosition) {
-                annotation.enabled = true;
+         */
+        /*
+        if (handlePick = placemarkPosition) {
+            annotation.enabled = true;
 
-            }
+        }
 
-             */
+         */
 
+        var placemarkPicked = [];
+        highlightedItems = [];
 
-            highlightedItems = [];
-
-            // Perform the pick. Must first convert from window coordinates to canvas coordinates, which are
-            // relative to the upper left corner of the canvas rather than the upper left corner of the page.
+        // Perform the pick. Must first convert from window coordinates to canvas coordinates, which are
+        // relative to the upper left corner of the canvas rather than the upper left corner of the page.
 
 
 //test
-            /*
-            if (pickList.objects.length > 0) {
-                annotation.enabled = true;
+        /*
+        if (pickList.objects.length > 0) {
+            annotation.enabled = true;
+        }
+        if (pickList.objects.length > 0) {
+            for (var p = 0; p < pickList.objects.length; p++) {
+
+                pickList.objects[p].userObject.annotation = true;
+                //console.log(pickList);
+
+                // Keep track of highlighted items in order to de-highlight them later.
+                highlightedItems.push(pickList.objects[p].userObject);
             }
-            if (pickList.objects.length > 0) {
-                for (var p = 0; p < pickList.objects.length; p++) {
+        }
 
-                    pickList.objects[p].userObject.annotation = true;
-                    //console.log(pickList);
+         */
+        /*
+        if (pickList.objects.length > 0) {
+            for (var p = 0; p < pickList.objects.length; p++) {
 
-                    // Keep track of highlighted items in order to de-highlight them later.
-                    highlightedItems.push(pickList.objects[p].userObject);
+                pickList.objects[p].userObject.annotation= true;
+                //console.log(pickList);
+
+                // Keep track of highlighted items in order to de-highlight them later.
+                highlightedItems.push(pickList.objects[p].userObject);
+
+                // Detect whether the placemark's label was picked. If so, the "labelPicked" property is true.
+                // If instead the user picked the placemark's image, the "labelPicked" property is false.
+                // Applications might use this information to determine whether the user wants to edit the label
+                // or is merely picking the placemark as a whole.
+                if (pickList.objects[p].labelPicked) {
+                    console.log("Label picked");
+
                 }
             }
+        }
 
-             */
-            /*
-            if (pickList.objects.length > 0) {
-                for (var p = 0; p < pickList.objects.length; p++) {
-
-                    pickList.objects[p].userObject.annotation= true;
-                    //console.log(pickList);
-
-                    // Keep track of highlighted items in order to de-highlight them later.
-                    highlightedItems.push(pickList.objects[p].userObject);
-
-                    // Detect whether the placemark's label was picked. If so, the "labelPicked" property is true.
-                    // If instead the user picked the placemark's image, the "labelPicked" property is false.
-                    // Applications might use this information to determine whether the user wants to edit the label
-                    // or is merely picking the placemark as a whole.
-                    if (pickList.objects[p].labelPicked) {
-                        console.log("Label picked");
-
-                    }
-                }
-            }
-
-             */
+         */
 
 //var placemark1 = annotation.enabled;
-/*
- if (pickList.objects.length > 0) {
-     for (var y = 0; y < pickList.objects.length; y++)
-        annotation.enabled = true;
+        /*
+         if (pickList.objects.length > 0) {
+             for (var y = 0; y < pickList.objects.length; y++)
+                annotation.enabled = true;
 
 
- }
-            //wwd.addEventListener("click", placemarkPosition);
+         }
+                    //wwd.addEventListener("click", placemarkPosition);
 
 
- */
+         */
 
-     /*
-            if (pickList.objects.length > placemark1) {
-                for (var y = 0; y < placemark1; y++)
-                    annotation.enabled = false;
-            }
+        /*
+               if (pickList.objects.length > placemark1) {
+                   for (var y = 0; y < placemark1; y++)
+                       annotation.enabled = false;
+               }
 
-      */
+         */
 
-         /*
-            // Highlight the items picked by simply setting their highlight flag to true.
-            if (pickList.objects.length > 0) {
-                for (var p = 0; p < pickList.objects.length; p++) {
-                    var enables = annotation.enabled;
-                    pickList.objects[p].userObject.annotation= true;
-                    //console.log(pickList);
+        /*
+           // Highlight the items picked by simply setting their highlight flag to true.
+           if (pickList.objects.length > 0) {
+               for (var p = 0; p < pickList.objects.length; p++) {
+                   var enables = annotation.enabled;
+                   pickList.objects[p].userObject.annotation= true;
+                   //console.log(pickList);
 
-                    // Keep track of highlighted items in order to de-highlight them later.
-                    highlightedItems.push(pickList.objects[p].userObject);
+                   // Keep track of highlighted items in order to de-highlight them later.
+                   highlightedItems.push(pickList.objects[p].userObject);
 
-                    // Detect whether the placemark's label was picked. If so, the "labelPicked" property is true.
-                    // If instead the user picked the placemark's image, the "labelPicked" property is false.
-                    // Applications might use this information to determine whether the user wants to edit the label
-                    // or is merely picking the placemark as a whole.
-                    if (pickList.objects[p].labelPicked) {
-                        console.log("Label picked");
+                   // Detect whether the placemark's label was picked. If so, the "labelPicked" property is true.
+                   // If instead the user picked the placemark's image, the "labelPicked" property is false.
+                   // Applications might use this information to determine whether the user wants to edit the label
+                   // or is merely picking the placemark as a whole.
+                   if (pickList.objects[p].labelPicked) {
+                       console.log("Label picked");
+                   }
+               }
+           }
+
+         */
+        /*
+        Original
+        ------------------
+         var highlightedItems = [];
+
+                // The common pick-handling function.
+                var handlePick = function (o) {
+                    console.log("Hello")
+                    // The input argument is either an Event or a TapRecognizer. Both have the same properties for determining
+                    // the mouse or tap location.
+                    var x = o.clientX,
+                        y = o.clientY;
+
+                    var redrawRequired = highlightedItems.length > 0; // must redraw if we de-highlight previously picked items
+
+                    // De-highlight any previously highlighted placemarks.
+                    for (var h = 0; h < highlightedItems.length; h++) {
+                        highlightedItems[h].highlighted = false;
                     }
-                }
-            }
+                    highlightedItems = [];
 
-          */
-/*
-Original
-------------------
- var highlightedItems = [];
+                    // Perform the pick. Must first convert from window coordinates to canvas coordinates, which are
+                    // relative to the upper left corner of the canvas rather than the upper left corner of the page.
+                    var pickList = wwd.pick(wwd.canvasCoordinates(x, y));
+                    if (pickList.objects.length > 0) {
+                        redrawRequired = true;
+                    }
 
-        // The common pick-handling function.
-        var handlePick = function (o) {
-            console.log("Hello")
+                    // Highlight the items picked by simply setting their highlight flag to true.
+                    if (pickList.objects.length > 0) {
+                        for (var p = 0; p < pickList.objects.length; p++) {
+                            pickList.objects[p].userObject.highlighted = true;
+
+                            // Keep track of highlighted items in order to de-highlight them later.
+                            highlightedItems.push(pickList.objects[p].userObject);
+
+                            // Detect whether the placemark's label was picked. If so, the "labelPicked" property is true.
+                            // If instead the user picked the placemark's image, the "labelPicked" property is false.
+                            // Applications might use this information to determine whether the user wants to edit the label
+                            // or is merely picking the placemark as a whole.
+                            if (pickList.objects[p].labelPicked) {
+                                console.log("Label picked");
+                            }
+                        }
+                    }
+
+                    // Update the window if we changed anything.
+                    if (redrawRequired) {
+                        wwd.redraw(); // redraw to make the highlighting changes take effect on the screen
+                    }
+                };
+
+                // Listen for mouse moves and highlight the placemarks that the cursor rolls over.
+                wwd.addEventListener("click", handlePick);
+         */
+        var highlightedItems = [];
+
+        var handlePick1 = function (o) {
+            //console.log("Hello")
             // The input argument is either an Event or a TapRecognizer. Both have the same properties for determining
             // the mouse or tap location.
             var x = o.clientX,
                 y = o.clientY;
+            /*
+            console.log(o.clientX)
+            console.log(o.clientY)
 
+             */
             var redrawRequired = highlightedItems.length > 0; // must redraw if we de-highlight previously picked items
 
             // De-highlight any previously highlighted placemarks.
             for (var h = 0; h < highlightedItems.length; h++) {
-                highlightedItems[h].highlighted = false;
+                modal1.style.display = "none";
+
             }
-            highlightedItems = [];
 
             // Perform the pick. Must first convert from window coordinates to canvas coordinates, which are
             // relative to the upper left corner of the canvas rather than the upper left corner of the page.
@@ -376,14 +428,155 @@ Original
                 redrawRequired = true;
             }
 
-            // Highlight the items picked by simply setting their highlight flag to true.
+            for (var h = 0; h < pickList.objects.length; h++) {
+                annotation.enabled = false;
+                console.log("hidemodel")
+            }
+            highlightedItems = [];
+            /*
+            console.log(wwd.pick)
+                            console.log(wwd.canvasCoordinates(x,y))
+                            console.log(wwd.pick(wwd.canvasCoordinates(x,y)))
+                            console.log(pickList.objects.length)
+
+             */
+            //Highlight the items picked by simply setting their highlight flag to true.
             if (pickList.objects.length > 0) {
                 for (var p = 0; p < pickList.objects.length; p++) {
                     pickList.objects[p].userObject.highlighted = true;
-
+                    //console.log(pickList.objects[p].userObject)
                     // Keep track of highlighted items in order to de-highlight them later.
-                    highlightedItems.push(pickList.objects[p].userObject);
+                    highlightedItems.push(pickList.objects[p]);
 
+                    //console.log(pickList.objects.length)
+                    //console.log(pickList.objects[1])
+//var textbubble = annotation.enabled = true;
+// var a = 1; var b = "1";
+// if (a === b){
+//     console.log("Yes");
+// }
+
+
+
+
+                    if (pickList.objects[p].position == placemarkPosition1) {
+
+                        modal1.style.display = "block";
+                        // addEventListener("click", placemark)
+
+                        //surfaceImageLayer = true;
+                        console.log("lao")
+                        // wwd.addEventListener("mousemove", handlePick);
+
+                    }
+                }
+
+
+                }
+            }
+
+
+        // The common pick-handling function.
+        var handlePick = function (o) {
+            //console.log("Hello")
+            // The input argument is either an Event or a TapRecognizer. Both have the same properties for determining
+            // the mouse or tap location.
+            var x = o.clientX,
+                y = o.clientY;
+            /*
+            console.log(o.clientX)
+            console.log(o.clientY)
+
+             */
+            var redrawRequired = highlightedItems.length > 0; // must redraw if we de-highlight previously picked items
+
+            // De-highlight any previously highlighted placemarks.
+            for (var h = 0; h < highlightedItems.length; h++) {
+                modal1.style.display = "none";
+
+            }
+
+            // Perform the pick. Must first convert from window coordinates to canvas coordinates, which are
+            // relative to the upper left corner of the canvas rather than the upper left corner of the page.
+            var pickList = wwd.pick(wwd.canvasCoordinates(x, y));
+            if (pickList.objects.length > 0) {
+                redrawRequired = true;
+            }
+
+            for (var h = 0; h < pickList.objects.length; h++) {
+                annotation.enabled = false;
+                console.log("hidemodel")
+            }
+            highlightedItems = [];
+            /*
+            console.log(wwd.pick)
+                            console.log(wwd.canvasCoordinates(x,y))
+                            console.log(wwd.pick(wwd.canvasCoordinates(x,y)))
+                            console.log(pickList.objects.length)
+
+             */
+            //Highlight the items picked by simply setting their highlight flag to true.
+            if (pickList.objects.length > 0) {
+                for (var p = 0; p < pickList.objects.length; p++) {
+                    pickList.objects[p].userObject.highlighted = true;
+                    //console.log(pickList.objects[p].userObject)
+                    // Keep track of highlighted items in order to de-highlight them later.
+                    highlightedItems.push(pickList.objects[p]);
+
+                    //console.log(pickList.objects.length)
+                    //console.log(pickList.objects[1])
+//var textbubble = annotation.enabled = true;
+// var a = 1; var b = "1";
+// if (a === b){
+//     console.log("Yes");
+// }
+
+
+                    if (pickList.objects[p].position == placemarkPosition) {
+
+
+                        modal.style.display = "block";
+                        // addEventListener("click", placemark)
+
+                        //surfaceImageLayer = true;
+                        console.log("lao")
+                        // wwd.addEventListener("click", handlePick);
+                    }
+
+
+
+
+                    // wwd.addEventListener("click", handlePick);
+
+
+
+                    /*
+                                            if (pickList.objects.length > 1) {
+                                                for (var p1 = 0; p1 < pickList.objects.length; p1++) {
+                                                    modal1.style.display = "block";
+                                                    // addEventListener("click", placemark)
+
+                                                    //surfaceImageLayer = true;
+                                                    console.log("lao1")
+                                                    placemarkPicked.push(pickList.objects[p1]);
+                                                }
+
+                                            }
+
+                     */
+
+
+                    /*else if (pickList.objects[p].position != placemarkPosition){
+                        annotation.enabled = false;
+                        console.log("haha")
+                    }*/
+
+//document.getElementById("ex1")
+//console.log(placemarkPosition)
+
+                    //console.log(pickList.objects[p].position);
+                    //console.log(WorldWind.Position);
+                    //console.log(highlightedItems.push(pickList.objects[p]))
                     // Detect whether the placemark's label was picked. If so, the "labelPicked" property is true.
                     // If instead the user picked the placemark's image, the "labelPicked" property is false.
                     // Applications might use this information to determine whether the user wants to edit the label
@@ -394,137 +587,26 @@ Original
                 }
             }
 
+
+            //if (pickList.objects[])
+
+            if (pickList.objects[p]) {
+                annotation.enabled = true;
+                console.log("true")
+            }
+            if (highlightedItems < 3) {
+                annotation.enabled = false;
+            }
+
             // Update the window if we changed anything.
             if (redrawRequired) {
                 wwd.redraw(); // redraw to make the highlighting changes take effect on the screen
             }
         };
+        wwd.addEventListener("click", handlePick);
+        wwd.addEventListener("mousemove", handlePick1);
 
         // Listen for mouse moves and highlight the placemarks that the cursor rolls over.
-        wwd.addEventListener("click", handlePick);
- */
-            var highlightedItems = [];
-
-            // The common pick-handling function.
-            var handlePick = function (o) {
-                //console.log("Hello")
-                // The input argument is either an Event or a TapRecognizer. Both have the same properties for determining
-                // the mouse or tap location.
-                var x = o.clientX,
-                    y = o.clientY;
-                /*
-                console.log(o.clientX)
-                console.log(o.clientY)
-
-                 */
-                var redrawRequired = highlightedItems.length > 0; // must redraw if we de-highlight previously picked items
-
-                // De-highlight any previously highlighted placemarks.
-
-
-                // Perform the pick. Must first convert from window coordinates to canvas coordinates, which are
-                // relative to the upper left corner of the canvas rather than the upper left corner of the page.
-                var pickList = wwd.pick(wwd.canvasCoordinates(x, y));
-                if (pickList.objects.length > 0) {
-                    redrawRequired = true;
-                }
-
-                for (var h = 0; h < pickList.objects.length; h++) {
-                    annotation.enabled = false;
-                    console.log("hidemodel")
-                }
-                highlightedItems = [];
-/*
-console.log(wwd.pick)
-                console.log(wwd.canvasCoordinates(x,y))
-                console.log(wwd.pick(wwd.canvasCoordinates(x,y)))
-                console.log(pickList.objects.length)
-
- */
-                // Highlight the items picked by simply setting their highlight flag to true.
-                if (pickList.objects.length > 0) {
-                    for (var p = 0; p < pickList.objects.length; p++) {
-                        pickList.objects[p].userObject.highlighted = true;
-                        //console.log(pickList.objects[p].userObject)
-                        // Keep track of highlighted items in order to de-highlight them later.
-                        highlightedItems.push(pickList.objects[p]);
-
-                        //console.log(pickList.objects.length)
-                        //console.log(pickList.objects[1])
-//var textbubble = annotation.enabled = true;
-// var a = 1; var b = "1";
-// if (a === b){
-//     console.log("Yes");
-// }
-
-if (pickList.objects[p].position == placemarkPosition){
-
-    modal.style.display = "block";
-    // addEventListener("click", placemark)
-
-     //surfaceImageLayer = true;
-    console.log("lao")
-
-}
-
-                        if (pickList.objects[p].position == placemarkPosition1){
-
-                            modal1.style.display = "block";
-                            // addEventListener("click", placemark)
-
-                            //surfaceImageLayer = true;
-                            console.log("lao1")
-
-                        }
-/*
-                        var btn = document.getElementById("myBtn");
-
-                        btn.onclick = function() {
-                            modal.style.display = "block";
-                        }
-
- */
-
-
-/*else if (pickList.objects[p].position != placemarkPosition){
-    annotation.enabled = false;
-    console.log("haha")
-}*/
-
-//document.getElementById("ex1")
-//console.log(placemarkPosition)
-
-                    //console.log(pickList.objects[p].position);
-                    //console.log(WorldWind.Position);
-                        //console.log(highlightedItems.push(pickList.objects[p]))
-                        // Detect whether the placemark's label was picked. If so, the "labelPicked" property is true.
-                        // If instead the user picked the placemark's image, the "labelPicked" property is false.
-                        // Applications might use this information to determine whether the user wants to edit the label
-                        // or is merely picking the placemark as a whole.
-                        if (pickList.objects[p].labelPicked) {
-                            console.log("Label picked");
-                        }
-                    }
-                }
-
-                //if (pickList.objects[])
-
-                if (pickList.objects[p] ) {
-                    annotation.enabled = true;
-                    console.log("true")
-                }
-                if (highlightedItems < 3) {
-                    annotation.enabled = false;
-                }
-
-                // Update the window if we changed anything.
-            if (redrawRequired) {
-                wwd.redraw(); // redraw to make the highlighting changes take effect on the screen
-            }
-        };
-
-        // Listen for mouse moves and highlight the placemarks that the cursor rolls over.
-        wwd.addEventListener("click", handlePick);
 
 
         //
@@ -546,7 +628,7 @@ if (pickList.objects[p].position == placemarkPosition){
          */
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
             console.log("clickedonx")
         }
@@ -568,46 +650,50 @@ if (pickList.objects[p].position == placemarkPosition){
 
         // Get the <span> element that closes the modal
         var span1 = document.getElementById("close1");
-/*
-        // When the user clicks the button, open the modal
-        btn1.onclick = function() {
-            modal1.style.display = "block";
-        }
+        /*
+                // When the user clicks the button, open the modal
+                btn1.onclick = function() {
+                    modal1.style.display = "block";
+                }
 
- */
+         */
 
         // When the user clicks on <span> (x), close the modal
-        span1.onclick = function() {
+        span1.onclick = function () {
             modal1.style.display = "none";
         }
         // // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal1) {
-                modal1.style.display = "none";
+        window.onclick = function (event) {
+            if (event.target == modal1 || event.target == modal) {
+                event.target.style.display = "none";
                 console.log("wq")
             }
         }
 
-
+console.log()
         // Listen for taps on mobile devices and highlight the placemarks that the user taps.
         // var tapRecognizer = new WorldWind.TapRecognizer(wwd, handlePick);
-        var lol = function(event) {
-            if (event.target == modal) {
-                console.log("hey")
-                modal.style.display = "none";
+        // var lol = function(event) {
+        //     if (event.target == modal) {
+        //         console.log("hey")
+        //         modal.style.display = "none";
+        //     }
+        // }
+        // window.addEventListener("click", lol);
+        var placemarkswitching = document.getElementsByClassName("form-check-input");
+        //var placemarkswitch = document.getElementsByClassName("form-check form-switch");
+        console.log(placemarkswitching)
+        var toggle = function(){
+            if(placemarkswitching[0].checked == false){
+                placemark.enabled = false;
             }
         }
-        window.addEventListener("click", lol);
-        var yd = function () {
+        /*
+for(var hopeitworks = 0;hopeitworks  )
+*/
 
-            modal1.style.display = "block";
+        console.log(placemark.enabled)
+        console.log(placemarkswitching[1])
 
-        }
-
-
-            addEventListener("mousemove", yd)
-
-
-
-
+        //placemark.enabled = false;
     });
