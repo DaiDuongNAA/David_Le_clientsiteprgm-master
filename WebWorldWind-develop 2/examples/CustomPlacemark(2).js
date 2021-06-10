@@ -682,7 +682,10 @@ console.log()
         // window.addEventListener("click", lol);
         var placemarkswitching = document.getElementsByClassName("form-check-input");
         //var placemarkswitch = document.getElementsByClassName("form-check form-switch");
+
         console.log(placemarkswitching)
+
+
         var toggle = function(){
             if(placemarkswitching[0].checked == false){
                 placemark.enabled = false;
@@ -692,8 +695,10 @@ console.log()
 for(var hopeitworks = 0;hopeitworks  )
 */
 
+        placemarkswitching[0].addEventListener("click" , toggle) ;
+        //placemarkswitch.addEventListener("click", toggle);
         console.log(placemark.enabled)
         console.log(placemarkswitching[1])
-
+        //console.log(placemarkswitch)
         //placemark.enabled = false;
     });

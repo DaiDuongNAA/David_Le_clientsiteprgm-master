@@ -1050,7 +1050,7 @@ define([
             var nextIFDOffset = GeoTiffUtil.getBytes(this.geoTiffData, i, 4, this.isLittleEndian);
 
             if (nextIFDOffset === 0) {
-                return;
+
             }
             else {
                 this.parseImageFileDirectory(nextIFDOffset);

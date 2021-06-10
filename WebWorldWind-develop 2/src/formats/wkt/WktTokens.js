@@ -116,7 +116,7 @@ define([
                     value: numeric
                 });
             } else if (this.isWhiteSpace(c)) {
-                continue;
+
             } else {
                 throw new Error('Invalid character: {{', c, '}}');
             }
