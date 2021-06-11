@@ -689,6 +689,8 @@ console.log()
         var toggle = function(){
             if(placemarkswitching[0].checked == false){
                 placemark.enabled = false;
+            } else{
+                placemark.enabled = true;
             }
         }
         /*
@@ -701,4 +703,6 @@ for(var hopeitworks = 0;hopeitworks  )
         console.log(placemarkswitching[1])
         //console.log(placemarkswitch)
         //placemark.enabled = false;
+        //for(var r = 0; r < ; r++ )
+            console.log(layers.length)
     });
